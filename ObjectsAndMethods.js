@@ -40,7 +40,7 @@ let person = {
   theName: "Maged",
   theAge: 25,
   skills: ["HTML", "CSS", "JS"],
-  availability: false,
+  availability: true,
 
   // Nested Object
   country: {
@@ -77,18 +77,117 @@ console.log("-".repeat(20));
 console.log("4- Create Object With New Keyword");
 console.log("-".repeat(20));
 
+let obj = new Object({
+  age: 24,
+}); // create new object with new keyword
 
+console.log(obj); 
+
+// create new prop and reassign.
+obj.name = "Maged";
+obj.age = 25;
+obj["country"] = "Egypt";
+obj.sayHello = function () {
+  return `Hi`;
+};
+
+console.log(obj); 
 
 console.log("-".repeat(20));
 console.log("5- This Keyword");
 console.log("-".repeat(20));
 
+console.log(this);
+console.log(this === window);
+
+mVar = 100
+console.log(window.mVar);
+console.log(this.mVar);
+
+function say() {
+    console.log(this);
+  return this;
+}
+say();
+console.log(say() === window);
+
+document.getElementById("cli").onclick = function () {
+  console.log(this);
+};
+let userN = {
+  age: 25,
+  ageInDays: function () {
+    console.log(this);
+    return this.age * 365;
+  },
+};
+
+console.log(userN.age);
+console.log(userN.ageInDays());
 
 console.log("-".repeat(20));
 console.log("6- Create Object With Create Method");
 console.log("-".repeat(20));
 
+let per = {
+  age: 20,
+  doubleAge: function () {
+    return this.age * 2;
+  },
+};
+
+console.log(per);
+console.log(per.age);
+console.log(per.doubleAge());
+
+let objec = Object.create({});
+
+objec.a = 100;
+
+console.log(objec);
+
+let copyObj = Object.create(per);
+
+copyObj.age = 50;
+
+console.log(copyObj);
+console.log(copyObj.age);
+console.log(copyObj.doubleAge());
 
 console.log("-".repeat(20));
 console.log("7- Create Object With Assign Method");
 console.log("-".repeat(20));
+/*
+  Object
+  - Create Object With Assign Method
+*/
+
+let obj1 = {
+  prop1: 1,
+  meth1: function () {
+    return this.prop1;
+  },
+};
+
+let obj2 = {
+  prop2: 2,
+  meth2: function () {
+    return this.prop2;
+  },
+};
+
+let targetObject = {
+  prop1: 100,
+  prop3: 3,
+};
+
+let finalObject = Object.assign(targetObject, obj1, obj2);
+
+finalObject.prop1 = 200;
+finalObject.prop4 = 4;
+
+console.log(finalObject);
+
+let newObject = Object.assign({}, obj1, { prop5: 5, prop6: 6 });
+
+console.log(newObject);
